@@ -21,7 +21,7 @@ return {
 
     require("mason").setup()
     require("mason-lspconfig").setup({
-      ensure_installed = { "clangd" },
+      ensure_installed = { "clangd", "eslint" },
     })
 
     vim.lsp.config('clangd', {
@@ -30,6 +30,19 @@ return {
       capabilities = capabilities,
     })
 
+    vim.lsp.config('eslint', {
+      on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        -- Auto-fix on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end,
+      capabilities = capabilities,
+    })
+
     vim.lsp.enable('clangd')  -- Enable it for all buffers
+    vim.lsp.enable('eslint')  -- Enable it for all buffers
   end,
 }
