@@ -20,6 +20,9 @@ vim.opt.smartcase = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Clipboard
+vim.opt.clipboard = "unnamedplus"
+
 vim.g.mapleader = " "
 vim.opt.fixendofline = false
 vim.g.editorconfig = true
