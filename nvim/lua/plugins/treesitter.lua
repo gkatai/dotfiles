@@ -11,7 +11,9 @@ return {
         "typescript",
         "html",
         "css",
-        "c"
+        "c",
+        "markdown",
+        "markdown_inline"
       })
     end,
   },
