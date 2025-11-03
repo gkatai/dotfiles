@@ -4,7 +4,7 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
-        file_ignore_patterns = { "node_modules", ".git/", "build", "external" },
+        file_ignore_patterns = { "node_modules", ".git/", "build", "external", "libs", ".cache" },
       },
       pickers = {
         find_files = {

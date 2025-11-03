@@ -19,27 +19,27 @@ return {
 
     -- Keybindings
     local gs = require('gitsigns')
+    local wk = require('which-key')
 
-    vim.keymap.set('n', '<leader>gs', gs.stage_hunk, { desc = 'Stage hunk' })
-    vim.keymap.set('n', '<leader>gr', gs.reset_hunk, { desc = 'Reset hunk' })
-    vim.keymap.set('n', '<leader>gS', gs.stage_buffer, { desc = 'Stage buffer' })
-    vim.keymap.set('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'Undo stage hunk' })
-    vim.keymap.set('n', '<leader>gR', gs.reset_buffer, { desc = 'Reset buffer' })
-    vim.keymap.set('n', '<leader>gp', gs.preview_hunk, { desc = 'Preview hunk' })
-    vim.keymap.set('n', '<leader>gb', gs.toggle_current_line_blame, { desc = 'Toggle blame' })
-    vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'Diff this' })
-
-    -- Navigation
-    vim.keymap.set('n', ']c', function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() gs.next_hunk() end)
-      return '<Ignore>'
-    end, { expr = true, desc = 'Next hunk' })
-
-    vim.keymap.set('n', '[c', function()
-      if vim.wo.diff then return '[c' end
-      vim.schedule(function() gs.prev_hunk() end)
-      return '<Ignore>'
-    end, { expr = true, desc = 'Previous hunk' })
+    wk.add({
+      { '<leader>gs', gs.stage_hunk, desc = 'Stage hunk' },
+      { '<leader>gr', gs.reset_hunk, desc = 'Reset hunk' },
+      { '<leader>gS', gs.stage_buffer, desc = 'Stage buffer' },
+      { '<leader>gu', gs.undo_stage_hunk, desc = 'Undo stage hunk' },
+      { '<leader>gR', gs.reset_buffer, desc = 'Reset buffer' },
+      { '<leader>gp', gs.preview_hunk, desc = 'Preview hunk' },
+      { '<leader>gb', gs.toggle_current_line_blame, desc = 'Toggle blame' },
+      { '<leader>gd', gs.diffthis, desc = 'Diff this' },
+      { ']c', function()
+        if vim.wo.diff then return ']c' end
+        vim.schedule(function() gs.next_hunk() end)
+        return '<Ignore>'
+      end, expr = true, desc = 'Next hunk' },
+      { '[c', function()
+        if vim.wo.diff then return '[c' end
+        vim.schedule(function() gs.prev_hunk() end)
+        return '<Ignore>'
+      end, expr = true, desc = 'Previous hunk' },
+    })
   end,
 }
